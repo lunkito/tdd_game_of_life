@@ -13,7 +13,11 @@ describe('Game ', () => {
 	it('Cell Should EXISTS', () => {
 		expect(new Game.Cell()).toBeInstanceOf(Game.Cell);
 	});
-	it('Cell Should have X position', () => {
+	it('Cell Should have position', () => {
 		expect(new Game.Cell(1, 1).x).toBe(1);
+		expect(new Game.Cell(1, 1).y).toBe(1);
+	});
+	it('Should be alive', () => {
+		expect(new Game.Cell().isAlive).toBe(true);
 	});
 });
