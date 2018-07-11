@@ -10,7 +10,10 @@ import * as Game from '../src/index';
 // Clase estado -> habría un estado y un historico
 
 describe('Game ', () => {
-	it('Should EXISTS', () => {
-		expect(new Game.Cell()).toBeDefined();
+	it('Cell Should EXISTS', () => {
+		expect(new Game.Cell()).toBeInstanceOf(Game.Cell);
+	});
+	it('Cell Should have X position', () => {
+		expect(new Game.Cell(1, 1).x).toBe(1);
 	});
 });
