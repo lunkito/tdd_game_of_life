@@ -20,4 +20,9 @@ describe('Game ', () => {
 	it('Should be alive', () => {
 		expect(new Game.Cell().isAlive).toBe(true);
 	});
+	it('Cell Should die when Kill() is called', () => {
+		const cell = new Game.Cell();
+		cell.kill();
+		expect(cell.isAlive).toBe(false);
+	});
 });
