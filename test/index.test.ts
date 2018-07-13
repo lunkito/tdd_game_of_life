@@ -1,5 +1,7 @@
-import * as Game from '../src/index';
-import * as Cell from '../src/Cell';
+// import { historic, evalGeneration } from '../src/index';
+import { Cell } from '../src/Cell';
+import { World } from '../src/World';
+import { Empty } from '../src/Empty';
 
 // Si tiene menos de 2 vecinos o más de 3, en la siguiente muere
 // Si tiene 2 o 3 se queda
@@ -12,38 +14,54 @@ import * as Cell from '../src/Cell';
 
 describe('Cell ', () => {
 	it('Should EXISTS', () => {
-		expect(new Cell.Cell()).toBeInstanceOf(Cell.Cell);
+		expect(new Cell()).toBeInstanceOf(Cell);
 	});
 	it('Should have position', () => {
-		expect(new Cell.Cell(1, 1).x).toBe(1);
-		expect(new Cell.Cell(1, 1).y).toBe(1);
+		expect(new Cell(1, 1).x).toBe(1);
+		expect(new Cell(1, 1).y).toBe(1);
 	});
 	it('Should be alive', () => {
-		expect(new Cell.Cell().isAlive).toBe(true);
+		expect(new Cell().isAlive).toBe(true);
 	});
 	it('Should die when Kill() is called', () => {
-		const cell = new Cell.Cell();
+		const cell = new Cell();
 		cell.kill();
 		expect(cell.isAlive).toBe(false);
 	});
 	it('Should revive', () => {
-		const cell = new Cell.Cell();
+		const cell = new Cell();
 		cell.kill();
 		cell.revive();
 		expect(cell.isAlive).toBe(true);
 	});
 });
 
-describe.skip('Historic', () => {
-	it('should be a collection', () => {
-		console.log(`Game historic: ${typeof(Game.historic)}`);
-		expect(Game.historic).toEqual([new Cell.Cell()]);
+describe('World', () => {
+	it('Should do something', () => {
+		expect(new World()).toBeInstanceOf(World);
+	});
+
+	it('should has map', () => {
+		const map = [
+			[new Empty(), new Empty(), new Empty(), new Empty()],
+			[new Empty(), new Empty(), new Empty(), new Empty()],
+			[new Empty(), new Empty(), new Empty(), new Empty()],
+			[new Empty(), new Empty(), new Empty(), new Empty()],
+		];
+		expect(new World().worldMap).toEqual(map);
 	});
 });
 
+// xdescribe('Historic', () => {
+// 	it('should be a collection', () => {
+// 		console.log(`Game historic: ${typeof(historic)}`);
+// 		expect(historic).toEqual([new Cell()]);
+// 	});
+// });
 
-describe('Generation', () => {
-	it('should return historic', () => {
-		expect(Game.evalGeneration()).toBe(Game.historic);
-	});
-});
+
+// xdescribe('Generation', () => {
+// 	it('should return historic', () => {
+// 		expect(evalGeneration()).toBe(historic);
+// 	});
+// });
